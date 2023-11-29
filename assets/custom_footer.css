@@ -1,0 +1,104 @@
+.footer__content-top.page-width {
+    max-width: 1200px;
+}
+
+.footer-block__heading {
+    font-weight: 900;
+    font-family: Lato, sans-serif;
+}
+
+.footer-block__details-content.rte p {
+    font-size: 14px;
+}
+
+.footer__content-bottom{
+    padding-bottom: 3rem !important;
+}
+
+.footer__content-bottom{
+    background: #fff;
+}
+
+.custom_email_form .newsletter__wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px !important;
+}
+
+.custom_email_form .newsletter__subheading{
+    margin-inline: 4rem !important;
+}
+
+.custom_email_form .newsletter-form__field-wrapper {
+    margin-top: -15px;
+    padding: 15px;
+    display: flex;
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+.custom_email_form .newsletter-form__field-wrapper label.field__label {
+    color: #000 !important;
+}
+
+.custom_email_form .newsletter-form__field-wrapper .field__input {
+    background: #fff;
+    border-radius: 2px;
+    min-width: 470px !important;
+    color: #000 !important;
+}
+
+.custom_email_form .newsletter-form__button {
+    right: -5px !important;
+    width: 12rem !important;
+    background: #303030 !important;
+    border-radius: 4px;
+}
+
+.custom_email_form .field{
+    width: auto !important  
+}
+
+.custom_email_form .newsletter-form{
+    max-width: 100% !important
+}
+
+span.newsletter-social-icon-wrap {
+    margin-left: 40px;
+}
+
+.custom_email_form .field:before,
+.custom_email_form .field:after{
+    display: none !important;
+}
+
+.custom_email_form .field__input:focus{
+    border: none !important;
+    box-shadow: none !important;
+}
+
+@media only screen and (max-width: 767px) {
+.custom_email_form .newsletter__wrapper{
+    padding-top: 25px !important;
+}
+  
+.footer__content-bottom {
+    padding-bottom: 2rem !important;
+}
+
+.custom_email_form .newsletter-form__field-wrapper .field__input {
+    min-width: 250px!important;
+}
+
+.custom_email_form .newsletter-form__button {
+    right: -3px!important;
+    width: 10rem!important;
+}
+  
+.custom_email_form .newsletter__wrapper,
+.custom_email_form .newsletter-form__field-wrapper{
+    display: block;
+}  
+ 
+}

@@ -1,0 +1,148 @@
+<style>
+     .hdr-custom-size-opt {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+    }
+    .hdr-custom-size-opt li {
+        float: left;
+        margin: 0;
+        width: max-content;
+        height: 40px;
+        position: relative;
+    }
+    .hdr-custom-size-opt input[type=radio] {
+        opacity: .01;
+        z-index: 100;
+    }
+    .hdr-custom-size-opt label, .hdr-custom-size-opt input {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+    .hdr-custom-size-opt label {
+        cursor: pointer;
+        font-family: Montserrat,sans-serif;
+        font-weight: 600;
+        letter-spacing: .1em;
+        text-transform: uppercase;
+        position: relative;
+        display: inline-block;
+        line-height: 1;
+        padding: 9px 11px;
+        margin: 3px 4px 7px 3px;
+        font-size: .8125em;
+        font-style: normal;
+        background-color: #fff;
+        box-shadow: 0 0 0 1px #e8e8e1;
+        color: #222323;
+    }
+    p.radio-size-options,
+    label.radio-size-options1,
+    p.line-item-property__field.Additional-Information1 {
+        width: 100%;
+    }
+    p.line-item-property__field.Additional-Information1 {
+        margin-top: 15px;
+    }
+    .hdr-custom-size-opt input[type=radio]:checked+label, .Checked+label {
+        background: #fff;
+        box-shadow: 0 0 0 2px #000;
+    }
+
+  .custom-size-options{
+      display: none;
+  }
+
+    @media only screen and (max-width: 767px){
+      ul.hdr-custom-size-opt {
+        display: flex;
+    }
+    }
+</style>
+{% if product.tags contains 'custom_flow' %}
+  <div class="custom-size-options" style="margin-bottom: 2rem;">
+    <label class="radio-size-options1 organza" style="margin-top: 10px; font-style: normal;">Size</label>
+    <ul class="hdr-custom-size-opt radio-size-options1 organza">
+      <li>
+        <input type="radio" id="S" name="properties[Sizes]" value="S">
+        <label for="S">S</label>
+      </li>
+      <li>
+        <input type="radio" id="M" name="properties[Sizes]" value="M">
+        <label for="M">M</label>
+      </li>
+      <li>
+        <input type="radio" id="L" name="properties[Sizes]" value="L">
+        <label for="L">L</label>
+      </li>
+      {% if product.tags contains 'x_large' %}
+        <li>
+          <input type="radio" id="XL" name="properties[Sizes]" value="XL">
+          <label for="XL">XL</label>
+        </li>
+      {% endif %}
+      {% if product.tags contains 'show_custom_size_only' %}
+        <li>
+          <input type="radio" id="custom_size" name="properties[Sizes]" value="Custom Size">
+          <label for="Custom Size">Custom Size</label>
+        </li>
+      {% endif %}
+    </ul>
+  </div>
+{% endif %}
+{% if product.tags contains 'stitched_custom_size_only' %}
+  <div class="custom-size-options" style="margin-bottom: 2rem;">
+    <label class="radio-size-options1 organza" style="margin-top: 10px; font-style: normal;">Size</label>
+    <ul class="hdr-custom-size-opt radio-size-options1 organza">
+      <li>
+        <input type="radio" id="custom_size" name="properties[Sizes]" value="Custom Size">
+        <label for="Custom Size">Custom Size</label>
+      </li>
+    </ul>
+  </div>
+{% endif %}
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const body = document.querySelector('body');
+    if (body.classList.contains('product')) {
+      const typeVariants = document.querySelectorAll('variant-radios input[type="radio"][data-variant-name="type"]');
+      const sizeFieldsetElement = document.querySelector('.custom-size-options')
+      const custominputsizes = document.querySelectorAll('.hdr-custom-size-opt input');
+      if (typeVariants) {
+        typeVariants.forEach(radioInput => {
+          const radioVariantValue = radioInput.getAttribute('data-variant-value');
+          if (radioVariantValue === 'unstitched' && radioInput.checked) {
+            sizeFieldsetElement.style.display = 'none';
+            custominputsizes.forEach(function (input) {
+              input.checked = false;
+            })
+          } else if (radioVariantValue === 'stitched' && radioInput.checked) {
+            sizeFieldsetElement.style.display = 'block';
+            custominputsizes[0].click();
+          }
+          radioInput.addEventListener('change', function(event) {
+            const dataVariantValue = this.getAttribute('data-variant-value');
+
+            if (dataVariantValue === 'unstitched') {
+              sizeFieldsetElement.style.display = "none";
+              custominputsizes.forEach(function (input) {
+              input.checked = false;
+            })
+            } else if (dataVariantValue === 'stitched') {
+              sizeFieldsetElement.style.display = "block";
+              custominputsizes[0].click();
+            }
+          });
+        });
+      }
+    }
+  });
+</script>
